@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Fuchsbau.Components.CrossCutting.EmailMessaging</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Brokerage.Contract\Brokerage.Contract.csproj" />
+    <ProjectReference Include="..\EmailMessaging.Contract\EmailMessaging.Contract.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Fuchsbau.Components.Logic.PurchasingManagement</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PurchasingManagement.Contract\PurchasingManagement.Contract.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Fuchsbau.Components.Logic.GoodsReceivingWorkflows</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Brokerage.Contract\Brokerage.Contract.csproj" />
+    <ProjectReference Include="..\Configuration.Contract\Configuration.Contract.csproj" />
+    <ProjectReference Include="..\GoodsReceivingManagement.Contract\GoodsReceivingManagement.Contract.csproj" />
+    <ProjectReference Include="..\GoodsReceivingWorkflows.Contract\GoodsReceivingWorkflows.Contract.csproj" />
+    <ProjectReference Include="..\Logging.Contract\Logging.Contract.csproj" />
+    <ProjectReference Include="..\MasterDataManagement.Contract\MasterDataManagement.Contract.csproj" />
+    <ProjectReference Include="..\PurchasingManagement.Contract\PurchasingManagement.Contract.csproj" />
+  </ItemGroup>
+
+</Project>

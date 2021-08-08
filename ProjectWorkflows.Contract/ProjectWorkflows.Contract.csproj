@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Fuchsbau.Components.Logic.ProjectWorkflows.Contract</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="IProjectImageWorkflow.cs~RF9489e4e.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataTypes\DataTypes.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Callbacks\" />
+    <Folder Include="DataTypes\" />
+  </ItemGroup>
+
+</Project>

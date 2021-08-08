@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Fuchsbau.Components.Mappings.Mapping.Ninject</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ninject" Version="3.3.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Brokerage\Brokerage.MessageBroker.csproj" />
+    <ProjectReference Include="..\DataStoring\DataStoring.EF.csproj" />
+    <ProjectReference Include="..\EmailMessaging.Contract\EmailMessaging.Contract.csproj" />
+    <ProjectReference Include="..\EmailMessaging.MailKit\EmailMessaging.MailKit.csproj" />
+    <ProjectReference Include="..\GoodsReceivingManagement\GoodsReceivingManagement.csproj" />
+    <ProjectReference Include="..\GoodsReceivingWorkflows.Contract\GoodsReceivingWorkflows.Contract.csproj" />
+    <ProjectReference Include="..\GoodsReceivingWorkflows\GoodsReceivingWorkflows.csproj" />
+    <ProjectReference Include="..\Logging\Logging.csproj" />
+    <ProjectReference Include="..\ProjectManagement.Contract\ProjectManagement.Contract.csproj" />
+    <ProjectReference Include="..\ProjectManagement\ProjectManagement.csproj" />
+    <ProjectReference Include="..\ProjectWorkflows.Contract\ProjectWorkflows.Contract.csproj" />
+    <ProjectReference Include="..\ProjectWorkflows\ProjectWorkflows.csproj" />
+  </ItemGroup>
+
+</Project>

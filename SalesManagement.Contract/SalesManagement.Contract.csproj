@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Fuchsbau.Components.Logic.SalesManagement.Contract</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Callbacks\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataStoring.Contract\DataStoring.Contract.csproj" />
+  </ItemGroup>
+
+</Project>

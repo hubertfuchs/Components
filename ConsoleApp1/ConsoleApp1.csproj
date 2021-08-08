@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Fuchsbau.Components.UI.ConsoleApp1</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Brokerage\Brokerage.MessageBroker.csproj" />
+    <ProjectReference Include="..\Configuration\Configuration.csproj" />
+    <ProjectReference Include="..\DataStoring\DataStoring.EF.csproj" />
+    <ProjectReference Include="..\FileStorage.FileSystem\FileStorage.csproj" />
+    <ProjectReference Include="..\FileStorage.OneDrive\FileStorage.OneDrive.csproj" />
+    <ProjectReference Include="..\Logging\Logging.csproj" />
+    <ProjectReference Include="..\Mapping.Ninject\Mapping.Ninject.csproj" />
+    <ProjectReference Include="..\SecurityManagement\SecurityManagement.csproj" />
+    <ProjectReference Include="..\SecurityWorkflows\SecurityWorkflows.csproj" />
+  </ItemGroup>
+
+</Project>

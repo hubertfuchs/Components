@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Fuchsbau.Components.Logic.SecurityWorkflows.Contract</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="IUserWorkflow.cs~RF40b30637.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataTypes\DataTypes.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Callbacks\" />
+    <Folder Include="DataTypes\" />
+  </ItemGroup>
+
+</Project>

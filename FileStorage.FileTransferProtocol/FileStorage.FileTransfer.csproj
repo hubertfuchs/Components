@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Fuchsbau.Components.Data.FileStorage.FileTransfer</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Rebex.Ftp" Version="5.0.7620" />
+    <PackageReference Include="Rebex.Sftp" Version="5.0.7620" />
+  </ItemGroup>
+
+</Project>

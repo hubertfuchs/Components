@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Fuchsbau.Components.Logic.SecurityWorkflows</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Brokerage.Contract\Brokerage.Contract.csproj" />
+    <ProjectReference Include="..\SecurityManagement.Contract\SecurityManagement.Contract.csproj" />
+    <ProjectReference Include="..\SecurityWorkflows.Contract\SecurityWorkflows.Contract.csproj" />
+  </ItemGroup>
+
+</Project>

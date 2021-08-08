@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Fuchsbau.Components.Logic.ProjectWorkflows</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Brokerage.Contract\Brokerage.Contract.csproj" />
+    <ProjectReference Include="..\Configuration.Contract\Configuration.Contract.csproj" />
+    <ProjectReference Include="..\ProjectManagement.Contract\ProjectManagement.Contract.csproj" />
+    <ProjectReference Include="..\ProjectWorkflows.Contract\ProjectWorkflows.Contract.csproj" />
+  </ItemGroup>
+
+</Project>
