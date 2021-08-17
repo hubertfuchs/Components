@@ -14,19 +14,19 @@ namespace Fuchsbau.Components.CrossCutting.EmailMessaging.Tests
 
         public DotNetEmailSenderUnitTests()
         {
-            var messageBrokerMock = new Mock<IMessageBroker>();
+            var eventAggregatorMock = new Mock<IMessageBroker>();
 
-            _emailSender = new DotNetEmailSender( messageBrokerMock.Object );
+            _emailSender = new DotNetEmailSender(eventAggregatorMock.Object);
 
             _mailMessage = new MailMessage
             {
                 IsBodyHtml = true,
                 Subject = "test message",
                 Body = "<html><head><title></title></head><body><h1>title</h1>content</body></html>",
-                From = new MailAddress( "mustermann@beispiel.de", "Unit Test" ),
+                From = new MailAddress("mustermann@beispiel.de", "Unit Test"),
             };
 
-            _mailMessage.To.Add( "mustermann@beispiel.de" );
+            _mailMessage.To.Add("mustermann@beispiel.de");
         }
 
         [TestMethod]
@@ -36,13 +36,13 @@ namespace Fuchsbau.Components.CrossCutting.EmailMessaging.Tests
                 subject: _mailMessage.Subject,
                 plainTextBody: "title\n\ncontent",
                 fromAddress: _mailMessage.From.Address,
-                toAddress: _mailMessage.To[ 0 ].Address );
+                toAddress: _mailMessage.To[0].Address);
         }
 
         [TestMethod]
         public void Send_PreCondition2_PostCondition2()
         {
-            _emailSender.Send( _mailMessage );
+            _emailSender.Send(_mailMessage);
         }
     }
 }

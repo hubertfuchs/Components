@@ -2,7 +2,7 @@
 
 namespace Fuchsbau.Components.Data.FileStorage.Contract
 {
-    public interface IProjectRootDirectoryRepository : IRepository<ProjectRoot>
+    public interface IProjectRootRepository : IRepository<ProjectRoot>
     {
     }
 }

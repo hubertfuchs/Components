@@ -35,7 +35,7 @@ namespace Fuchsbau.Components.Data.DataStoring.EF
 
         public void Update(Project project)
         {
-            _context.Update(project);
+            _context.Projects.Update(project);
             _context.SaveChanges();
         }
     }

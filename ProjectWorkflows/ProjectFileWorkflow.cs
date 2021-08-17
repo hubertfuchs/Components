@@ -14,18 +14,18 @@ namespace Fuchsbau.Components.Logic.ProjectWorkflows
         //private readonly IProjectFileGroupsConfiguration _projectFileGroupsConfiguration;
         private readonly IProjectFileManager _projectFileManager;
         private readonly IBarcodeGenerator _barcodeGenerator;
-        private readonly IMessageBroker _messageBroker;
+        private readonly IMessageBroker _eventAggregator;
 
         public ProjectFileWorkflow(
             //IProjectFileGroupsConfiguration projectFileGroupsConfiguration,
             IProjectFileManager projectFileManager,
             IBarcodeGenerator barcodeGenerator,
-            IMessageBroker messageBroker)
+            IMessageBroker eventAggregator)
         {
             //_projectFileGroupsConfiguration = projectFileGroupsConfiguration ?? throw new ArgumentNullException(nameof(projectFileGroupsConfiguration));
             _projectFileManager = projectFileManager ?? throw new ArgumentNullException(nameof(projectFileManager));
             _barcodeGenerator = barcodeGenerator ?? throw new ArgumentNullException(nameof(barcodeGenerator));
-            _messageBroker = messageBroker ?? throw new ArgumentNullException(nameof(messageBroker));
+            _eventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
         }
 
         // public ProjectFileWorkflow()

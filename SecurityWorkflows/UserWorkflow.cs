@@ -11,32 +11,32 @@ namespace Fuchsbau.Components.Logic.SecurityWorkflows
     public class UserWorkflow : IUserWorkflow
     {
         private readonly IUserManager _userManager;
-        private readonly IMessageBroker _messageBroker;
+        private readonly IMessageBroker _eventAggregator;
 
         public UserWorkflow(
             IUserManager userManager,
-            IMessageBroker messageBroker )
+            IMessageBroker eventAggregator)
         {
-            _userManager = userManager ?? throw new ArgumentNullException( nameof( userManager ) );
-            _messageBroker = messageBroker ?? throw new ArgumentNullException( nameof( messageBroker ) );
+            _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+            _eventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
         }
 
-        public void SignUpNewUser( User account )
+        public void SignUpNewUser(User account)
         {
 
         }
 
-        public bool SignIn( string userName, SecureString userPassword )
+        public bool SignIn(string userName, SecureString userPassword)
         {
             //...
 
             var message = new UserLoginEventMessage();
-            _messageBroker.Publish( message );
+            _eventAggregator.Publish(message);
 
             return true;
         }
 
-        public void ForgotUserPassword( string email )
+        public void ForgotUserPassword(string email)
         {
 
         }

@@ -8,10 +8,10 @@ namespace Fuchsbau.Components.Logic.ProjectManagement
 {
     public class ProjectRootDirectoryManager : IProjectRootDirectoryManager
     {
-        private IProjectRootDirectoryRepository _projectRootDirectoryRepository;
+        private IProjectRootRepository _projectRootDirectoryRepository;
 
         public ProjectRootDirectoryManager(
-            IProjectRootDirectoryRepository projectRootDirectoryRepository)
+            IProjectRootRepository projectRootDirectoryRepository)
         {
             _projectRootDirectoryRepository = projectRootDirectoryRepository ?? throw new ArgumentNullException(nameof(projectRootDirectoryRepository));
         }

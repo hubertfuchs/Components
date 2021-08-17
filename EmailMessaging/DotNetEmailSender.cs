@@ -12,16 +12,16 @@ namespace Fuchsbau.Components.CrossCutting.EmailMessaging
 {
     public class DotNetEmailSender : EmailSenderBase, IEmailSender
     {
-        private readonly IMessageBroker _messageBroker;
+        private readonly IMessageBroker _eventAggregator;
         private readonly SmtpClient _smtpClient;
 
         public DotNetEmailSender(
-            IMessageBroker messageBroker )
+            IMessageBroker eventAggregator)
         {
-            _messageBroker = messageBroker ?? throw new ArgumentNullException( nameof( messageBroker ) );
+            _eventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
 
-            _messageBroker.Subscribe<NewBarcodeEventMessage>(NewBarcodeCallback);
-            _messageBroker.Subscribe<SendEmailCommandMessage>(SendEmailCallback);
+            _eventAggregator.Subscribe<NewBarcodeEventMessage>(NewBarcodeCallback);
+            _eventAggregator.Subscribe<SendEmailCommandMessage>(SendEmailCallback);
 
             _smtpClient = new SmtpClient
             {
@@ -29,63 +29,65 @@ namespace Fuchsbau.Components.CrossCutting.EmailMessaging
                 Host = "smtp.beispiel.de",
                 EnableSsl = true,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential( "mustermann@beispiel.de", "0815" ),
+                Credentials = new NetworkCredential("mustermann@beispiel.de", "0815"),
                 DeliveryMethod = SmtpDeliveryMethod.Network,
             };
         }
 
-        public void Send( MailMessage mailMessage )
+        public void Send(MailMessage mailMessage)
         {
-            if( mailMessage == null )
+            if (mailMessage == null)
             {
-                throw new ArgumentNullException( nameof( mailMessage ) );
+                throw new ArgumentNullException(nameof(mailMessage));
             }
 
-            _smtpClient.Send( mailMessage );
+            _smtpClient.Send(mailMessage);
         }
 
-        public void Send( string subject, string plainTextBody, string fromAddress, string toAddress )
+        public void Send(string subject, string plainTextBody, string fromAddress, string toAddress)
         {
             #region check parameters for null
-            if( subject == null )
+
+            if (subject == null)
             {
-                throw new ArgumentNullException( nameof( subject ) );
+                throw new ArgumentNullException(nameof(subject));
             }
 
-            if( plainTextBody == null )
+            if (plainTextBody == null)
             {
-                throw new ArgumentNullException( nameof( plainTextBody ) );
+                throw new ArgumentNullException(nameof(plainTextBody));
             }
 
-            if( fromAddress == null )
+            if (fromAddress == null)
             {
-                throw new ArgumentNullException( nameof( fromAddress ) );
+                throw new ArgumentNullException(nameof(fromAddress));
             }
 
-            if( toAddress == null )
+            if (toAddress == null)
             {
-                throw new ArgumentNullException( nameof( toAddress ) );
+                throw new ArgumentNullException(nameof(toAddress));
             }
+
             #endregion
 
-            var fromMailAddress = new MailAddress( fromAddress );
-            var toMailAddresses = new[] { new MailAddress( toAddress ) };
+            var fromMailAddress = new MailAddress(fromAddress);
+            var toMailAddresses = new[] {new MailAddress(toAddress)};
 
-            MailMessage mailMessage = CreateEmailMessage( subject, plainTextBody, fromMailAddress, toMailAddresses );
+            MailMessage mailMessage = CreateEmailMessage(subject, plainTextBody, fromMailAddress, toMailAddresses);
 
-            _smtpClient.Send( mailMessage );
+            _smtpClient.Send(mailMessage);
         }
 
-        private void SendEmailCallback( SendEmailCommandMessage message )
+        private void SendEmailCallback(SendEmailCommandMessage message)
         {
             //_smtpClient.Send(CreateEmailMessage(message.EmailSubject,message.EmailBody,new MailAddress(),new []{}));
         }
 
-        private void NewBarcodeCallback( NewBarcodeEventMessage message )
+        private void NewBarcodeCallback(NewBarcodeEventMessage message)
         {
-            if( message == null )
+            if (message == null)
             {
-                throw new ArgumentNullException( nameof( message ) );
+                throw new ArgumentNullException(nameof(message));
             }
 
             Bitmap barcodeImage = message.BarcodeImage;
@@ -96,19 +98,19 @@ namespace Fuchsbau.Components.CrossCutting.EmailMessaging
             string subject = "new barcode";
             string htmlBody = @$"<html><head></head><body><h1>{barcodeText}</h1><br />{barcodeImage}</body></html>";
 
-            var fromMailAddress = new MailAddress( "mustermann@beispiel.de" );
-            var toMailAddresses = new[] { new MailAddress( "mustermann@beispiel.de" ) };
+            var fromMailAddress = new MailAddress("mustermann@beispiel.de");
+            var toMailAddresses = new[] {new MailAddress("mustermann@beispiel.de")};
 
             MailMessage mailMessage =
-                CreateEmailMessage( subject, htmlBody, fromMailAddress, toMailAddresses, null, null, null );
+                CreateEmailMessage(subject, htmlBody, fromMailAddress, toMailAddresses, null, null, null);
 
             var memoryStream = new MemoryStream();
-            barcodeImage.Save( memoryStream, ImageFormat.Bmp );
+            barcodeImage.Save(memoryStream, ImageFormat.Bmp);
 
-            var attachment = new Attachment( memoryStream, "image/png" );
-            mailMessage.Attachments.Add( attachment );
+            var attachment = new Attachment(memoryStream, "image/png");
+            mailMessage.Attachments.Add(attachment);
 
-            _smtpClient.Send( mailMessage );
+            _smtpClient.Send(mailMessage);
         }
     }
 }

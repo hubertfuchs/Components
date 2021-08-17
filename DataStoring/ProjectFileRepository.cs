@@ -17,22 +17,22 @@ namespace Fuchsbau.Components.Data.DataStoring.EF
 
         // public void Delete( ProjectFile projectFile )
         // {
-        //     _dbContext.ProjectImages.Remove(projectFile);
+        //     _context.ProjectImages.Remove(projectFile);
         // }
         // 
         // public void Insert( ProjectFile projectFile )
         // {
-        //     _dbContext.ProjectImages.Add(projectFile);
+        //     _context.ProjectImages.Add(projectFile);
         // }
         // 
         // public IQueryable<ProjectFile> Query()
         // {
-        //     return _dbContext.ProjectImages.AsQueryable();
+        //     return _context.ProjectImages.AsQueryable();
         // }
         // 
         // public void Update( ProjectFile projectFile )
         // {
-        //     _dbContext.Update(projectFile);
+        //     _context.Update(projectFile);
         // }
     }
 }

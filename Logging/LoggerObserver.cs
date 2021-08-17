@@ -9,19 +9,19 @@ namespace Fuchsbau.Components.CrossCutting.Logging
     [Observer]
     public class LoggerObserver : IObserver
     {
-        private readonly IMessageBroker _messageBroker;
+        private readonly IMessageBroker _eventAggregator;
 
         public LoggerObserver(
-            IMessageBroker messageBroker )
+            IMessageBroker eventAggregator)
         {
-            _messageBroker = messageBroker ?? throw new ArgumentNullException( nameof( messageBroker ) );
+            _eventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
         }
 
-        public void Update<T>( T param )
+        public void Update<T>(T param)
         {
-            if( param is LogLine logLine )
+            if (param is LogLine logLine)
             {
-                switch( logLine.Level )
+                switch (logLine.Level)
                 {
                     case LogLevel.Critical:
                         // TODO: send email to IT by IEmailSender

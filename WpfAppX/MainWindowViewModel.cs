@@ -77,7 +77,7 @@ namespace WpfAppX
                 HashValue = "yyy",
                 Mapping = @"\...\",
                 ReadOnly = true,
-                Folders = new List<ProjectFolder>()
+                ProjectFolders = new List<ProjectFolder>()
                 {
                     new ProjectFolder()
                     {

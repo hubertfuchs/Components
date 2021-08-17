@@ -14,7 +14,7 @@ namespace Fuchsbau.Components.Data.FileStorage.Tests
             try
             {
                 var projectContext = new ProjectContext();
-                var sut = new ProjectRootDirectoryRepository(projectContext);
+                var sut = new ProjectRootRepository(projectContext);
                 var result = sut.Query();
                 var x = new ProjectRoot();
                 x.Path = "Test";

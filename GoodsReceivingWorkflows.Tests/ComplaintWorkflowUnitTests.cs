@@ -27,7 +27,7 @@ namespace Fuchsbau.Components.Logic.GoodsReceivingWorkflows.Tests
         public void SendEmail_x_y()
         {
             var loggerMock = new Mock<ILogger>();
-            var messageBrokerMock = new Mock<IMessageBroker>();
+            var eventAggregatorMock = new Mock<IMessageBroker>();
             var configurationMock = new Mock<IConfiguration>();
             var complaintImageManagerMock = new Mock<IComplaintImageManager>();
             var documentGeneratorMock = new Mock<IDocumentGenerator>();
@@ -41,7 +41,7 @@ namespace Fuchsbau.Components.Logic.GoodsReceivingWorkflows.Tests
 
             SendEmailCommandMessage commandMessage = null;
 
-            messageBrokerMock
+            eventAggregatorMock
                 .Setup(x => x.Publish(It.IsAny<SendEmailCommandMessage>()))
                 .Callback((SendEmailCommandMessage message) => { commandMessage = message; });
 
@@ -81,7 +81,7 @@ namespace Fuchsbau.Components.Logic.GoodsReceivingWorkflows.Tests
 
             var sut = new ComplaintWorkflow(
                 loggerMock.Object,
-                messageBrokerMock.Object,
+                eventAggregatorMock.Object,
                 configurationMock.Object,
                 complaintImageManagerMock.Object,
                 documentGeneratorMock.Object,

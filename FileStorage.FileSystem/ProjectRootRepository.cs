@@ -6,38 +6,36 @@ using Fuchsbau.Components.Data.FileStorage.Contract;
 
 namespace Fuchsbau.Components.Data.FileStorage
 {
-    public class ProjectRootDirectoryRepository : IProjectRootDirectoryRepository
+    public class ProjectRootRepository : IProjectRootRepository
     {
         private readonly ProjectContext _context;
 
-        public ProjectRootDirectoryRepository(
+        public ProjectRootRepository(
             ProjectContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public void Delete(ProjectRoot projectRootDirectory)
+        public void Delete(ProjectRoot projectRoot)
         {
-            _context.ProjectRoots.Remove(projectRootDirectory);
+            _context.ProjectRoots.Remove(projectRoot);
             _context.SaveChanges();
         }
 
-        public void Insert(ProjectRoot projectRootDirectory)
+        public void Insert(ProjectRoot projectRoot)
         {
-            _context.ProjectRoots.Add(projectRootDirectory);
+            _context.ProjectRoots.Add(projectRoot);
             _context.SaveChanges();
         }
 
         public IQueryable<ProjectRoot> Query()
         {
-            _context.LoadData();
-
             return _context.ProjectRoots.AsQueryable();
         }
 
-        public void Update(ProjectRoot projectRootDirectory)
+        public void Update(ProjectRoot projectRoot)
         {
-            _context.Update(projectRootDirectory);
+            _context.ProjectRoots.Update(projectRoot);
             _context.SaveChanges();
         }
     }

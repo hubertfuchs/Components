@@ -2,11 +2,12 @@
 
 namespace Fuchsbau.Components.CrossCutting.Brokerage.Contract.DataTypes
 {
-    public class SendEmailCommandMessage : MessageBase
+    public class SendEmailCommandMessage : MessageBase, IMessage
     {
+        public Guid Id { get; }
         public string EmailAddressTo { get; }
-        public string EmailBody { get; }
         public string EmailSubject { get; }
+        public string EmailBody { get; }
         public string[] EmailAttachments { get; }
 
         public SendEmailCommandMessage(string emailAddressTo, string emailSubject, string emailBody, string[] emailAttachments)

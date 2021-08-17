@@ -15,7 +15,7 @@ namespace Fuchsbau.Components.Logic.GoodsReceivingWorkflows
     public class ComplaintWorkflow : IComplaintWorkflow
     {
         private readonly ILogger _logger;
-        private readonly IMessageBroker _messageBroker;
+        private readonly IMessageBroker _eventAggregator;
         private readonly IConfiguration _configuration;
         private readonly IComplaintImageManager _complaintImageManager;
         private readonly IDocumentGenerator _documentGenerator;
@@ -31,20 +31,20 @@ namespace Fuchsbau.Components.Logic.GoodsReceivingWorkflows
 
         public ComplaintWorkflow(
             ILogger logger,
-            IMessageBroker messageBroker,
+            IMessageBroker eventAggregator,
             IConfiguration configuration,
             IComplaintImageManager complaintImageManager,
             IDocumentGenerator documentGenerator,
             IComplaintDocumentManager complaintDocumentManager )
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _messageBroker = messageBroker ?? throw new ArgumentNullException(nameof(messageBroker));
+            _eventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             _complaintImageManager = complaintImageManager ?? throw new ArgumentNullException(nameof(complaintImageManager));
             _documentGenerator = documentGenerator ?? throw new ArgumentNullException(nameof(documentGenerator));
             _complaintDocumentManager = complaintDocumentManager ?? throw new ArgumentNullException(nameof(complaintDocumentManager));
             
-            _messageBroker.Subscribe<RenameFilesResponseMessage>(RenameFilesCallback);
+            _eventAggregator.Subscribe<RenameFilesResponseMessage>(RenameFilesCallback);
         }
 
         public void AddArticlePhoto(uint purchaseOrderNumber, ComplaintImage complaintImage)
@@ -88,7 +88,7 @@ namespace Fuchsbau.Components.Logic.GoodsReceivingWorkflows
             string newFileName = $"{purchaseOrderNumber}";
 
             RenameFilesRequestMessage message = new RenameFilesRequestMessage(files, newFileName);
-            _messageBroker.Publish(message);
+            _eventAggregator.Publish(message);
 
             _processState = ProcessState.Active;
         }
@@ -119,7 +119,7 @@ namespace Fuchsbau.Components.Logic.GoodsReceivingWorkflows
             string[] emailAttachments = files;
 
             var message = new SendEmailCommandMessage(emailAddressTo, emailSubject, emailBody, emailAttachments);
-            _messageBroker.Publish(message);
+            _eventAggregator.Publish(message);
         }
 
         private void RenameFilesCallback( RenameFilesResponseMessage message )

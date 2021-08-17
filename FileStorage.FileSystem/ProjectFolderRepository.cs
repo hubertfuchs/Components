@@ -29,15 +29,13 @@ namespace Fuchsbau.Components.Data.FileStorage
         }
 
         public IQueryable<ProjectFolder> Query()
-        {
-            _context.LoadData();
-
+        {                                              
             return _context.ProjectFolders.AsQueryable();
         }
 
         public void Update(ProjectFolder projectFolder)
         {
-            _context.Update(projectFolder);
+            _context.ProjectFolders.Update(projectFolder);
             _context.SaveChanges();
         }
     }

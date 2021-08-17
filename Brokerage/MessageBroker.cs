@@ -15,35 +15,35 @@ namespace Fuchsbau.Components.CrossCutting.Brokerage.MessageBroker
             _subscriptions = new Dictionary<Type, List<Delegate>>();
         }
 
-        public void Subscribe<TMessage>( Action<TMessage> callback )
+        public void Subscribe<TMessage>(Action<TMessage> callback) where TMessage : IMessage
         {
-            var messageType = typeof( TMessage );
+            var messageType = typeof(TMessage);
 
-            if( !_subscriptions.ContainsKey( messageType ) )
+            if (!_subscriptions.ContainsKey(messageType))
             {
-                _subscriptions[ messageType ] = new List<Delegate>();
+                _subscriptions[messageType] = new List<Delegate>();
             }
 
-            _subscriptions[ messageType ].Add( callback );
+            _subscriptions[messageType].Add(callback);
         }
 
-        public void Subscribe<TMessage>( Action<TMessage> callback, Func<TMessage, bool> filter )
+        public void Subscribe<TMessage>(Action<TMessage> callback, Func<TMessage, bool> filter) where TMessage : IMessage
         {
         }
 
-        public void Publish<TMessage>( TMessage message )
+        public void Publish<TMessage>(TMessage message) where TMessage : IMessage
         {
-            var messageType = typeof( TMessage );
+            var messageType = typeof(TMessage);
 
-            var hasHandler = _subscriptions.ContainsKey( messageType ) && _subscriptions[ messageType ].Count > 0;
-            if( !hasHandler )
+            var hasHandler = _subscriptions.ContainsKey(messageType) && _subscriptions[messageType].Count > 0;
+            if (!hasHandler)
             {
                 return;
             }
 
-            foreach( var callback in _subscriptions[ messageType ] )
+            foreach (var callback in _subscriptions[messageType])
             {
-                callback.DynamicInvoke( message );
+                callback.DynamicInvoke(message);
             }
         }
     }

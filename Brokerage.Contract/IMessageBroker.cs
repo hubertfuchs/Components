@@ -4,9 +4,8 @@ namespace Fuchsbau.Components.CrossCutting.Brokerage.Contract
 {
     public interface IMessageBroker
     {
-        void Subscribe<TMessage>( Action<TMessage> callback );
-        void Subscribe<TMessage>( Action<TMessage> callback, Func<TMessage, bool> filter );
-        void Publish<TMessage>( TMessage message );
+        void Subscribe<T>(Action<T> callback) where T : IMessage;
+        void Subscribe<T>(Action<T> callback, Func<T, bool> filter) where T : IMessage;
+        void Publish<T>(T message) where T : IMessage;
     }
 }
-

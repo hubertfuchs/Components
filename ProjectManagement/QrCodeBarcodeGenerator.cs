@@ -14,7 +14,7 @@ namespace Fuchsbau.Components.Logic.ProjectManagement
     public class QrCodeBarcodeGenerator : IBarcodeGenerator
     {
         private readonly ILogger _logger;
-        private readonly IMessageBroker _messageBroker;
+        private readonly IMessageBroker _eventAggregator;
         private QrCode _qrCode;
 
         private const int BITMAP_SCALE = 4;
@@ -22,12 +22,12 @@ namespace Fuchsbau.Components.Logic.ProjectManagement
 
         public QrCodeBarcodeGenerator(
             ILogger logger,
-            IMessageBroker messageBroker)
+            IMessageBroker eventAggregator)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _messageBroker = messageBroker ?? throw new ArgumentNullException(nameof(messageBroker));
+            _eventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
 
-            _messageBroker.Subscribe<GenerateBarcodeCommandMessage>(GenerateBarcodeCallback);
+            _eventAggregator.Subscribe<GenerateBarcodeCommandMessage>(GenerateBarcodeCallback);
         }
 
         public Barcode Generate(string text)
@@ -49,7 +49,7 @@ namespace Fuchsbau.Components.Logic.ProjectManagement
         {
             Barcode barcode = Generate(message.DataContent);
             NewBarcodeEventMessage eventMessage = new NewBarcodeEventMessage(barcode);
-            _messageBroker.Publish(eventMessage);
+            _eventAggregator.Publish(eventMessage);
         }
     }
 }
